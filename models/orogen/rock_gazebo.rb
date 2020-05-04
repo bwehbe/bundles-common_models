@@ -271,6 +271,15 @@ Syskit.extend_model OroGen.rock_gazebo.ThrusterTask do
     end
 end
 
+Syskit.extend_model OroGen.rock_gazebo.DvlTask do
+    driver_for CommonModels::Devices::Gazebo::Dvl, as: 'dvl'
+
+    def configure
+        super
+        properties.use_sim_time = !!Conf.gazebo.use_sim_time?
+    end
+end
+
 Syskit.extend_model OroGen.rock_gazebo.UnderwaterTask do
     driver_for CommonModels::Devices::Gazebo::Underwater, as: 'underwater'
 
